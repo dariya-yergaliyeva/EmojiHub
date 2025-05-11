@@ -1,0 +1,204 @@
+/* Общие стили для body */
+body {
+    font-family: 'Arial', sans-serif;
+    background-image: url('images.jpeg'); /* Путь к картинке */
+    background-size: cover; /* Масштабируем изображение на весь блок */
+    background-position: center center; /* Центрируем изображение */
+    background-repeat: no-repeat; /* Отключаем повторение изображения */
+    color: #e0e0e0;  /* Светлый текст */
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh; /* Обеспечивает, что футер будет внизу */
+  }
+  
+  /* Стили для шапки */
+  header {
+    background-color: #1f1f1f;  /* Темный фон для шапки */
+    color: #ffffff;  /* Белый текст */
+    padding: 30px 20px;
+    text-align: center;
+    border-bottom: 3px solid #333;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);  /* Тень */
+  }
+  
+  header h1 {
+    margin: 0;
+    font-size: 3rem;
+    letter-spacing: 2px;
+  }
+  
+  header nav {
+    margin-top: 10px;
+  }
+  
+  header nav a {
+    color: #ffffff;
+    text-decoration: none;
+    margin: 0 20px;
+    font-size: 1.2rem;
+    font-weight: 600;
+    transition: color 0.3s ease;
+  }
+  
+  header nav a:hover {
+    color: #ff9800;  /* Оранжевый цвет при наведении */
+  }
+  
+  header nav a:active {
+    color: #f57c00;  /* При нажатии */
+  }
+  
+  main {
+    padding: 60px 40px;
+    background-color: #1a1a1a;
+    border-radius: 10px;
+    margin: 20px auto;
+    max-width: 1000px; /* Увеличена максимальная ширина */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+    flex-grow: 1;
+    width: 100%;
+    text-align: center;
+  }
+  
+  h2 {
+    font-size: 2.2rem;
+    margin-bottom: 20px;
+    color: #ff9800;  /* Яркий акцент на заголовках */
+    text-align: center;
+  }
+  p{
+    text-align: center;
+  }
+  /* Стилизация кнопки */
+.btn {
+    display: inline-block;
+    background-color: #ff9800; /* Оранжевая кнопка */
+    color: #fff;
+    padding: 15px 30px;
+    font-size: 1.2rem;
+    text-decoration: none; /* Убираем подчеркивание */
+    border-radius: 5px;
+    text-align: center;
+    transition: background-color 0.3s ease;
+    margin-top: 20px;
+  }
+  
+  .btn:hover {
+    background-color: #f57c00; /* Темный оранжевый при наведении */
+  }
+  
+  .btn:active {
+    background-color: #e65100; /* Еще более темный оранжевый при нажатии */
+  }
+  
+  input {
+    padding: 25px 20px;
+    margin-bottom: 30px;
+    width: 100%;
+    max-width: 900px; /* Увеличена максимальная ширина */
+    background-color: #333;
+    color: #ffffff;
+    border: 1px solid #444;
+    border-radius: 5px;
+    font-size: 1.1rem;
+    outline: none;
+    transition: border 0.3s ease;
+    display: block;
+    margin: 0 auto;
+  }
+  
+  input:focus {
+    border-color: #ff9800;  /* Оранжевая граница при фокусе */
+  }
+  .like-button {
+    background: none;
+    border: none;
+    font-size: 1.6rem;
+    cursor: pointer;
+    margin-left: 10px;
+    color: #999;
+  }
+  
+  .like-button.liked {
+    color: red;
+  }
+  
+  
+  #emoji-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+  }
+  
+  .emoji-item {
+    background-color: #1c1c1c;
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.7);
+    text-align: center;
+    width: 200px; /* Увеличена ширина эмодзи */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  .emoji-item:hover {
+    transform: scale(1.1);
+    box-shadow: 0px 6px 25px rgba(0, 0, 0, 0.9);  /* Увеличенная тень */
+  }
+  
+  .emoji-item div {
+    font-size: 50px;
+    margin-bottom: 10px;
+  }
+  
+  .emoji-item p {
+    color: #ffffff;
+    font-size: 1.1rem;
+  }
+  
+  .emoji-item p:first-child {
+    font-weight: bold;
+    font-size: 1.2rem;
+    color: #ff9800;
+  }
+  
+  footer {
+    text-align: center;
+    padding: 20px;
+    background-color: #1f1f1f;
+    color: #ffffff;
+    margin-top: 30px;
+    font-size: 1rem;
+    border-top: 3px solid #333;
+    position: relative;
+    bottom: 0;
+  }
+  
+  footer p {
+    margin: 0;
+  }
+  
+  /* Анимации */
+  @keyframes fadeIn {
+    0% { opacity: 0; }
+    100% { opacity: 1; }
+  }
+  
+  /* Мобильная версия */
+  @media (max-width: 768px) {
+    .emoji-item {
+      width: 150px;  /* Уменьшаем размер эмодзи на мобильных */
+      padding: 15px;
+    }
+  
+    header h1 {
+      font-size: 2rem;
+    }
+  
+    input {
+      max-width: 90%;
+    }
+  }

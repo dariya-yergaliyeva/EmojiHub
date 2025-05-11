@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Каталог эмодзи</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <h1>Emoji Hub</h1>
+    <nav>
+      <a href="index.html">Главная</a>
+      <a href="emojis.html">Эмодзи</a>
+      <a href="favorites.html">Избранные</a>
+    </nav>
+  </header>
+
+  <main>
+    <h2>Каталог эмодзи</h2>
+    <input type="text" id="search" placeholder="Поиск эмодзи..." oninput="filterEmojis()">
+    <!-- <div id="emoji-container"></div> -->
+    <div id="emoji-list"></div>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 Emoji Hub</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
+<!-- oninput="filterEmojis()" -->

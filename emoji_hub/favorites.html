@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <title>Избранные эмодзи</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header>
+    <h1>Избранное</h1>
+    <nav>
+      <a href="index.html">Главная</a>
+      <a href="emojis.html">Эмодзи</a>
+      <a href="favorites.html">Избранные</a>
+    </nav>
+  </header>
+
+  <main>
+    <h2>Понравившиеся эмодзи</h2>
+    <div id="emoji-container"></div>
+  </main>
+
+  <script>
+    const liked = JSON.parse(localStorage.getItem("liked") || "[]");
+
+    async function fetchEmojis() {
+      const response = await fetch("http://localhost:8080/api/emojis");
+      const data = await response.json();
+      const filtered = data.filter(e => liked.includes(e.name));
+      renderEmojis(filtered);
+    }
+
+    function renderEmojis(emojis) {
+    const container = document.getElementById("emoji-container");
+    container.innerHTML = "";
+
+    if (emojis.length === 0) {
+        container.innerHTML = "<p>Нет понравившихся эмодзи.</p>";
+        return;
+    }
+
+    emojis.forEach((emoji) => {
+        const card = document.createElement("div");
+        card.className = "emoji-card";
+
+        const emojiSymbol = emoji.htmlCode[0];
+
+        card.innerHTML = `
+        <div class="emoji-symbol">${emojiSymbol}</div>
+        <div class="emoji-name">${emoji.name}</div>
+        <div class="emoji-category">${emoji.category}</div>
+        <div style="font-size: 24px; margin-top: 5px;">❤️</div>
+        `;
+
+        container.appendChild(card);
+    });
+    }
+
+
+    fetchEmojis();
+  </script>
+</body>
+</html>
