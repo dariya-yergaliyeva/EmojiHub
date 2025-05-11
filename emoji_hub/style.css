@@ -113,20 +113,21 @@ body {
   input:focus {
     border-color: #ff9800;  /* Оранжевая граница при фокусе */
   }
-  .like-button {
+  .like-btn {
     background: none;
     border: none;
-    font-size: 1.6rem;
+    font-size: 24px;
     cursor: pointer;
-    margin-left: 10px;
-    color: #999;
+    transition: transform 0.2s;
+    margin-top: 10px;
+    padding: 5px 10px;
+    border-radius: 5px;
   }
   
-  .like-button.liked {
-    color: red;
+  .like-btn:hover {
+    transform: scale(1.2);
+    background-color: rgba(255, 255, 255, 0.1);
   }
-  
-  
   #emoji-list {
     display: flex;
     flex-wrap: wrap;
