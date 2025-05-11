@@ -1,112 +1,45 @@
-# bookverse
-A RESTful API for managing library operations built with FastAPI and PostgreSQL, featuring JWT authentication, CRUD operations, and admin functionalities.
+# EmojiHub
+Веб-приложение, которое позволяет пользователям просматривать и использовать эмодзи.
+Frontend часть(JavaScript, HTML, CSS) можно запустить с помощью VS Code Live Server, a Backend часть через IntelliJ IDEA через файл EmojiHubApplication нажав на класс а затем на появившуеся зеленую кнопку слева
+Описание процесса проектирования и разработки
+Разработка проекта "Emoji Hub" была разделена на два основных этапа: frontend и backend.
+Сначала был создан базовый макет интерфейса с тёмной цветовой темой, адаптированной под атмосферный пользовательский опыт.
+После этого реализована интеграция с API emojihub через собственный backend-сервис, чтобы минимизировать прямые обращения к внешнему источнику и обеспечить расширяемость.
 
-Features
-JWT-based user authentication
-Book management (CRUD operations)
-Book borrowing/returning system
-Admin dashboard for user and borrowing history management
-Request logging middleware
-ISBN validation
-Database migrations with Alembic
-Docker containerization
-Postman API collection included
-Prerequisites
-Python 3.9+
-PostgreSQL
-Docker (optional)
-Pip (package manager)
-Installation
-Clone repository
+Этапы разработки:
 
-git clone https://github.com/rohan-shaw/library-management-system-api.git
-cd library-management-system
-Install dependencies
+Дизайн макета страниц (Главная, Эмодзи, Избранное)
 
-pip install -r requirements.txt
-Environment Setup
+Создание Spring Boot backend с REST API /api/emojis
 
-Rename and edit template.env file to .env:
+Подключение frontend к API через fetch
 
-PROJECT_NAME=Library_Management_System
-LOG_FILE=api_requests.log
-DATABASE_URL=postgresql://user:password@localhost:port/database_name
-SECRET_KEY=your_secret_key
-ALGORITHM=encrypting algorithm e.g. HS256
-ACCESS_TOKEN_EXPIRE_MINUTES=30
+Реализация поиска, лайков и смены стиля отображения эмодзи
 
-# optional
-EMAIL_HOST=smtp.gmail.com
-EMAIL_PORT=587
-EMAIL_USER=your-email
-EMAIL_PASSWORD=your-password
-EMAIL_FROM=your-email
-Database Migrations
+Сохранение лайков в localStorage
 
-alembic upgrade head
-Run Server
+Вывод избранного на отдельной странице
+никальные подходы и методологии
+Использован разделённый подход: frontend работает независимо от логики backend, что позволяет развивать их параллельно.
 
-uvicorn app.main:app --host 0.0.0.0 --port 8000 --reload
-Docker Setup
-Build and start containers:
+Применена локальная фильтрация лайков через localStorage, что позволило реализовать персонализацию без авторизации.
 
-docker-compose up --build
-Apply migrations:
+Модульная структура: логика поиска, лайков, рендера и API вынесена в отдельные функции, что облегчает поддержку.
 
-docker-compose exec web alembic upgrade head
-API Documentation
-Available at http://localhost:8000/docs after starting the server
+ Компромиссы в процессе разработки
+Вместо полноценной базы данных была использована внешняя API (https://github.com/cheatsnake/emojihub) через проксирующий backend. Это уменьшило сложность, но лишило возможности добавления кастомных эмодзи.
 
-Key Endpoints
+Для избежания сложности с авторизацией и аккаунтами была выбрана реализация лайков через localStorage
+Известные ошибки и проблемы
+Иногда не отображаются эмодзи при нестабильной работе внешнего API.
 
-Authentication
+Нет валидации данных от API (если структура изменится — возможен сбой).
+Почему выбран именно этот стек
 
-POST /register - User registration
+HTML/CSS/JS -	Простота, доступность, хорошая поддержка браузерами
+Vanilla JS -	Быстрое прототипирование без зависимостей
+Spring Boot (Java) -	Удобная реализация REST API, высокая надёжность
+Maven -	Стандарт для Java-проектов, управление зависимостями
+LocalStorage -	Простое хранение пользовательских лайков без авторизации
+VS Code + IntelliJ -	Эффективная работа над frontend и backend отдельно
 
-POST /login - User login
-
-POST /token/refresh - Refresh access token
-
-Books
-
-GET /books - List all books (paginated)
-
-POST /books - Add new book (Admin access only)
-
-PUT /books/{book_id} - Update book (Admin access only)
-
-Borrowing
-
-POST /borrow/{book_id} - Borrow a book
-
-POST /return/{book_id} - Return a book
-
-GET /borrowed - View user's borrowed books
-
-GET /borrowed/details - View user's borrowed books with book detail
-
-Admin
-
-GET /admin/users - List all users (Admin access only)
-
-GET /admin/borrowing-history - Full borrowing history (Admin access only)
-
-Postman Collection
-Import Library_Management_System.postman_collection.json
-
-Set environment variables:
-
- base_url : http://localhost:8000
-
- token : JWT access token (obtained from login)
-
-Project Structure
-├── app
-│   ├── routers      # API endpoints
-│   └── main.py     # FastAPI app instance
-├── alembic      # Alembic migration scripts
-References
-Deepseek
-Fastapi docs
-Alembic SQLAlchemy
-PostgreSQL
